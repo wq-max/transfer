@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.sang.mapper.UserMapper">
+    <select id="login" parameterType="org.sang.model.User" resultType="org.sang.model.User">
+        select * from user where username=#{username} and password=md5(CONCAT(password,username))
+    </select>
+    <insert id="addUser" parameterType="org.sang.model.User" >
+        insert into user(username,password,email,mobile) values (#{username},md5(CONCAT(password,username)),#{email},#{mobile})
+    </insert>
+    <delete id="deleteUserById" parameterType="int">
+        DELETE FROM user WHERE user_id=#{id}
+    </delete>
+    <update id="updateUserById" parameterType="org.sang.model.User">
+        UPDATE user set username=#{username},password=md5(CONCAT(password,username)),email=#{email},mobile=#{mobile} WHERE user_id=#{user_id}
+    </update>
+    <select id="getUserById" parameterType="int" resultType="org.sang.model.User">
+        SELECT * FROM user WHERE user_id=#{id}
+    </select>
+    <select id="getUserByName" parameterType="String" resultType="org.sang.model.User">
+        SELECT * FROM user WHERE username=#{name}
+    </select>
+    <select id="getAllUsers" resultType="org.sang.model.User">
+        SELECT * FROM user
+    </select>
+    <select id="getUsers" resultType="org.sang.model.User" parameterType="int">
+        SELECT * FROM user limit #{offset},3
+    </select>
+    <select id="getUserNumber" resultType="int">
+        SELECT count(*) FROM user
+    </select>
+    <select id="getIdByName" resultType="int" parameterType="String">
+        SELECT user_id FROM user where username = #{name}
+    </select>
+    <select id="mdTest" parameterType="String" resultType="String">
+        select md5(CONCAT('123','qiqi'))
+    </select>
+</mapper>
