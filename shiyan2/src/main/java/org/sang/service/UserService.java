@@ -43,7 +43,4 @@ public class UserService {
     public int getIdByName(String name){
         return userMapper.getIdByName(name);
     }
-    public String mdTest(String password, String name){
-        return userMapper.mdTest(password,name);
-    }
 }

@@ -17,5 +17,4 @@ public interface UserMapper {
     List<User> getUsers(int offset);
     int getUserNumber();
     int getIdByName(String name);
-    String mdTest(String password,String name);
 }
