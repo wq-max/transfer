@@ -24,7 +24,7 @@ int main()
     int *A = data;
     for (i = 0; i < K; i++)
     {
-        Selectsort(A, NAX_SIZE);
+        SelectionSort(A, NAX_SIZE);
         //Shellsort(A, NAX_SIZE);
         A = data;
 
