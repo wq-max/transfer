@@ -1,0 +1,5 @@
+﻿  project1.cpp
+D:\Users\25501\source\repos\project1\project1\project1.cpp(17,15): warning C4244: “参数”: 从“time_t”转换到“unsigned int”，可能丢失数据
+  sort.cpp
+  正在生成代码...
+  project1.vcxproj -> D:\Users\25501\source\repos\project1\Debug\project1.exe

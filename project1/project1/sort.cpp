@@ -1,21 +1,19 @@
 #include"sort.h"
 
-void Selectsort(int A[], int N)
+void SelectionSort(int A[], int N)
 {
-	for (int i = 0; i < N; i++)
+	for (int i = 0; i < N-1; i++)
 	{
-		int min = A[i];
 		int k = i;
 		for (int j = i+1; j < N; j++)
 		{
-			if (min > A[j])
+			if (A[k] > A[j])
 			{
-				min = A[j];
 				k = j;
 			}
 		}
 		int temp = A[i];
-		A[i] = min;
+		A[i] = A[k];
 		A[k] = temp;
 	}
 }
