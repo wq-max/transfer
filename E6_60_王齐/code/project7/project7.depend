@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1636209774 source:d:\users\25501\codeblocks\project7\main.c
+	<stdio.h>
+	<stdlib.h>
+	"MGraph.h"
+
+1636206754 d:\users\25501\codeblocks\project7\mgraph.h
+
+1636209738 source:d:\users\25501\codeblocks\project7\mgraph.c
+	<stdio.h>
+	<stdlib.h>
+	"MGraph.h"
+
