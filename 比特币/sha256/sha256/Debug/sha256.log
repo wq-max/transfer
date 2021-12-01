@@ -1,0 +1,7 @@
+﻿  SHA256.cpp
+  TEST.CPP
+D:\Users\25501\source\repos\sha256\sha256\TEST.CPP(30,11): warning C4244: “初始化”: 从“UInt64”转换到“int”，可能丢失数据
+D:\Users\25501\source\repos\sha256\sha256\TEST.CPP(34,14): warning C4244: “初始化”: 从“UInt64”转换到“UInt32”，可能丢失数据
+D:\Users\25501\source\repos\sha256\sha256\TEST.CPP(48,16): warning C4244: “=”: 从“UInt64”转换到“UInt32”，可能丢失数据
+  正在生成代码...
+  sha256.vcxproj -> D:\Users\25501\source\repos\sha256\Debug\sha256.exe
