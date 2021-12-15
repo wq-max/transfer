@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.sang.mapper.UserMapper">
+  <select id="selectPwdById" parameterType="Integer" resultType="String">
+    <!--
+         通过id查询密码
+       -->
+    SELECT pwd FROM user WHERE id=#{id}
+  </select>
+
+  <select id="selectNameById" parameterType="Integer" resultType="String">
+    <!--
+         通过id查询用户名
+       -->
+    SELECT name FROM user WHERE id=#{id}
+  </select>
+
+  <select id="selectAllUserId" resultType="Integer">
+    <!--
+         查询所有用户id
+       -->
+    SELECT id FROM user
+  </select>
+
+  <select id="selectAllUsers" resultType="org.sang.model.User">
+    <!--
+         查询所有用户
+       -->
+    SELECT * FROM user
+  </select>
+
+  <select id="selectUsersLikeId" resultType="org.sang.model.User">
+    <!--
+         查询类似id的用户
+       -->
+    SELECT * FROM user WHERE id like concat(concat('%',#{id}),'%') order by id
+  </select>
+
+  <select id="selectStateById" resultType="Integer">
+    <!--
+         查询用户的登录状态
+       -->
+    SELECT state FROM user WHERE id=#{id}
+  </select>
+
+  <update id="updateStateById" parameterType="Integer">
+    <!--
+      更新用户的登录状态
+    -->
+    update user
+    set state = #{state}
+    where id = #{id}
+  </update>
+</mapper>

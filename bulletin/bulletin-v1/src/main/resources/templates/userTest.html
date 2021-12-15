@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户</title>
+</head>
+<body>
+Welcome<p th:text="${username}"></p>
+<h1>消息</h1>
+<p id="text"></p>
+<hr>
+<button onclick="closeWebSocket()">退出系统</button>
+</body>
+<script th:inline="javascript">
+    var uid = [[${userId}]];
+    var webSocket = new WebSocket("ws://localhost:8080/websocket/" + uid);
+    var text=document.getElementById("text");
+
+    webSocket.onopen=function () {
+        showMessage("连接成功")
+    };
+
+    webSocket.onclose=function () {
+        showMessage("关闭连接");
+    };
+
+    webSocket.onerror=function () {
+        showMessage("连接出错");
+    };
+
+    webSocket.onmessage = function (message){
+        alert("收到公告消息");
+        showMessage(message.data);
+    }
+
+    function showMessage(message) {
+        text.innerText+=(message);
+    }
+    function closeWebSocket(){
+        webSocket.close();
+    }
+
+</script>
+</html>

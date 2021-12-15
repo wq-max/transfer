@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>管理员</title>
+</head>
+<body>
+管理员系统
+<hr>
+向用户<input id="userId" placeholder="用户id">
+发送公告<input id="bulletinId" placeholder="公告id">
+公告内容<input id="bulletinMessage" placeholder="公告内容">
+<hr>
+<button onclick="sendMessage()">发送</button>
+<hr>
+<form action="/SelectBulletin" method="post">
+    <button type="submit" >查询公告</button>
+</form>
+<button onclick="closeWebSocket()">退出系统</button>
+</body>
+<script th:inline="javascript">
+    var webSocket = new WebSocket("ws://localhost:8080/websocket/10000000");
+
+    function sendMessage(){
+        var uid = document.getElementById("userId").value;
+        var bid = document.getElementById("bulletinId").value;
+        var bMessage = document.getElementById("bulletinMessage").value;
+        webSocket.send(bid + bMessage + uid);
+    }
+
+    function closeWebSocket(){
+        webSocket.close();
+    }
+</script>
+</html>

@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>管理员登录页面</title>
+    <link rel="stylesheet" href="./adminStyle.css" />
+    <link rel="stylesheet" href="./iconf.css" />
+</head>
+<body >
+<form role="form" action = "/admin/loginIn" method="post">
+    <div id="maxbox">
+        <h1>LOGIN</h1>
+        <div class="inputbox">
+            <div class="inputText">
+                <i class="iconfont">&#xe609;</i>
+                <span class="iconfont icon-mine"></span>
+                <input type="text" placeholder="Username" id="username" name = "username" />
+            </div>
+            <div class="inputText">
+                <i class="iconfont">&#xe605;</i>
+                <span class="iconfont icon-lock"></span>
+                <input type="password" placeholder="Password" id = "password" name = "password" />
+            </div>
+            <button type="submit"  id = "login" value = "login">Sign in</button>
+
+        </div>
+
+
+    </div>
+</form>
+</body>
+</html>

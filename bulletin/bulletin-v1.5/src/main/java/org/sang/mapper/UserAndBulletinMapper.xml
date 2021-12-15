@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.sang.mapper.UserAndBulletinMapper">
+  <insert id="insert" parameterType="Integer">
+    <!--
+          添加一条记录，某个公告发送给了某个用户
+        -->
+    insert into ub (uid, bid)
+    values (#{uid,jdbcType=INTEGER}, #{bid,jdbcType=INTEGER})
+  </insert>
+
+  <delete id="deleteWithBulletin" parameterType="java.lang.Integer">
+    <!--
+          删除n条记录，某个公告被删除
+        -->
+    delete from ub
+    where bid = #{bid,jdbcType=INTEGER}
+  </delete>
+
+  <select id="selectBulletinByUserId" parameterType="Integer" resultType="org.sang.model.UserAndBulletin">
+    <!--
+          查询某个用户有哪些公告
+        -->
+    select *
+    from ub
+    where uid = #{uid,jdbcType=INTEGER} order by state,bid
+  </select>
+
+  <select id="selectBulletinByUserIdLikeBid" parameterType="Integer" resultType="org.sang.model.UserAndBulletin">
+    <!--
+          在用户收到的公告基础上进行查询
+        -->
+    select *
+    from ub
+    where uid = #{uid,jdbcType=INTEGER} and bid like concat(concat('%',#{bid}),'%') order by state,bid
+  </select>
+
+  <update id="updateUBState" parameterType="Integer">
+    <!--
+      改
+    -->
+    update ub
+    set state = #{state,jdbcType=VARCHAR}
+    where uid = #{uid,jdbcType=INTEGER} and bid = #{bid,jdbcType=INTEGER}
+  </update>
+</mapper>
