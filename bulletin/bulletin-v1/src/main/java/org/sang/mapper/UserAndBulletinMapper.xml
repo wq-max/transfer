@@ -23,7 +23,16 @@
         -->
     select *
     from ub
-    where uid = #{uid,jdbcType=INTEGER}
+    where uid = #{uid,jdbcType=INTEGER} order by state,bid
+  </select>
+
+  <select id="selectBulletinByUserIdLikeBid" parameterType="Integer" resultType="org.sang.model.UserAndBulletin">
+    <!--
+          在用户收到的公告基础上进行查询
+        -->
+    select *
+    from ub
+    where uid = #{uid,jdbcType=INTEGER} and bid like concat(concat('%',#{bid}),'%') order by state,bid
   </select>
 
   <update id="updateUBState" parameterType="Integer">

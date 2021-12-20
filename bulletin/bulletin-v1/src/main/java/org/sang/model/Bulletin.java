@@ -27,6 +27,8 @@ public class Bulletin {
      *
      * @mbg.generated Sun Dec 12 11:14:13 CST 2021
      */
+
+
     public Integer getId() {
         return id;
     }
@@ -66,4 +68,5 @@ public class Bulletin {
     public void setMessage(String message) {
         this.message = message == null ? null : message.trim();
     }
+
 }

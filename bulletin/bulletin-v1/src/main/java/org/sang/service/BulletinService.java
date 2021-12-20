@@ -46,6 +46,10 @@ public class BulletinService {
         return bulletinMapper.selectByPrimaryKey(id);
     }
 
+    public List<Bulletin> getBulletinByLikePrimaryKey(Integer id){
+       return bulletinMapper.selectByLikePrimaryKey(id);
+    }
+
     //查询所有公告
    public List<Bulletin> getAllBulletins(){
         return bulletinMapper.selectAllBulletins();

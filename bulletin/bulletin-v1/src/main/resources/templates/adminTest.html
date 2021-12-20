@@ -13,10 +13,13 @@
 <hr>
 <button onclick="sendMessage()">发送</button>
 <hr>
+<form action="/SelectBulletin" method="post">
+    <button type="submit" >查询公告</button>
+</form>
 <button onclick="closeWebSocket()">退出系统</button>
 </body>
 <script th:inline="javascript">
-    var webSocket = new WebSocket("ws://localhost:8080/websocket/00000000");
+    var webSocket = new WebSocket("ws://localhost:8088/websocket/10000000");
 
     function sendMessage(){
         var uid = document.getElementById("userId").value;

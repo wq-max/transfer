@@ -17,5 +17,6 @@ public interface BulletinMapper {
 
     Bulletin selectByPrimaryKey(Integer id);    //查
     List<Bulletin> selectAllBulletins();
+    List<Bulletin> selectByLikePrimaryKey(Integer id);
 
 }

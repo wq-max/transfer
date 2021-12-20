@@ -16,5 +16,7 @@ public interface UserAndBulletinMapper {
 
     Integer updateUBState(Integer uid, Integer bid, Integer state);        //更新用户查看公告的状态
 
+    List<UserAndBulletin> selectBulletinByUserIdLikeBid(Integer uid, Integer bid);   //在用户收到公告的基础上进行查询
+
 
 }

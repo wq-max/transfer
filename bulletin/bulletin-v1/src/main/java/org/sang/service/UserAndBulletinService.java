@@ -33,6 +33,10 @@ public class UserAndBulletinService {
         return userAndBulletinMapper.selectBulletinByUserId(uid);
     }
 
+    public List<UserAndBulletin> selectBulletinByUserIdLikeBid(Integer uid, Integer bid){
+        return userAndBulletinMapper.selectBulletinByUserIdLikeBid(uid, bid);
+    }
+
     //更新用户查看公告的状态
     public boolean updateUBState(Integer uid, Integer bid, Integer state){
         if (userAndBulletinMapper.updateUBState(uid, bid, state) > 0)

@@ -32,10 +32,18 @@
     -->
     select *
     from bulletin
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id}
   </select>
   <select id="selectAllBulletins" resultType="org.sang.model.Bulletin">
-    SELECT * FROM bulletin
+    SELECT * FROM bulletin order by id
+  </select>
+  <select id="selectByLikePrimaryKey" parameterType="java.lang.Integer" resultType="org.sang.model.Bulletin">
+    <!--
+      查
+    -->
+    select *
+    from bulletin
+    where id like concat(concat('%',#{id}),'%') order by id
   </select>
 
 </mapper>

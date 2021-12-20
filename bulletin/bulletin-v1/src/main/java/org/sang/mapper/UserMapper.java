@@ -3,6 +3,7 @@ package org.sang.mapper;
 
 
 import org.apache.ibatis.annotations.Mapper;
+import org.sang.model.User;
 
 import java.util.List;
 
@@ -19,4 +20,8 @@ public interface UserMapper {
     Integer selectStateById(Integer id);    //查询用户的登录状态
 
     Integer updateStateById(Integer id, Integer state);    //更新用户的登录状态
+
+    List<User> selectAllUsers();      //查询所有用户
+
+    List<User> selectUsersLikeId(Integer id);  //查询类似id的用户
 }

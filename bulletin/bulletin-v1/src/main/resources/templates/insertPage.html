@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>添加公告</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}"/>
+</head>
+
+<body>
+
+<div style="width:800px;height:100%;margin-left:270px;">
+    <form action="/admin/insert" method="post">
+        编号：<input class="form-control" type="text" th:value="${id}" name="id"><br>
+        内容：<input class="form-control" type="text" th:value="${message}" name="message"><br>
+        <button class="btn btn-primary btn-lg btn-block">保存</button>
+    </form>
+</div>
+
+</body>
+</html>
