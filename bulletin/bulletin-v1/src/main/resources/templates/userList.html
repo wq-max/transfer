@@ -49,7 +49,7 @@
 <script type="text/javascript" th:inline="javascript">
     var webSocket = new WebSocket("ws://localhost:8088/websocket/10000000");
     webSocket.onopen=function () {
-        alert("连接成功");
+        //alert("连接成功");
     };
 
     webSocket.onclose=function () {
@@ -79,7 +79,7 @@
         $("input[type='checkbox']:checked").each(function (index, item){
             uidList.push($(this).val());
         });
-        alert(uidList);
+        //alert(uidList);
     }
 
     function sendUserId(){
@@ -99,7 +99,7 @@
             contentType: "application/json;charset=utf-8",
             type: 'post',//指定提交方式为post
             success: function(data) {
-                alert("添加成功！" + data);
+                alert("发送成功！");
             }
         });
         uidList = new Array();

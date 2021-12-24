@@ -23,6 +23,12 @@ public class AdminTestController {
         return "adminIndex";
     }
 
+    @GetMapping("/adminOut")
+    public String out(){
+        System.out.println("go to login add");
+        return "adminIndex";
+    }
+
     @PostMapping(value = "/admin/loginIn")
     public String login(String username, String password){
         System.out.println(username+"    "+password);

@@ -41,6 +41,11 @@ public class UserTestController {
         System.out.println("go to login");
         return "index";
     }
+    @GetMapping("/logout{id}")
+    public String logOut(@PathVariable Integer id){
+        userService.exit(id);
+        return "index";
+    }
 
     @PostMapping(value = "/user/loginIn")
     public String login(String userid, String password, Map<String, Object> map){
@@ -60,6 +65,7 @@ public class UserTestController {
 
     @RequestMapping("/user/bulletinList/{id}")
     public String bulletinList(Model model,@PathVariable Integer id){
+        System.out.println(id);
         List<UserAndBulletin> userAndBulletinList = userAndBulletinService.selectBulletinByUserId(id);
         Map<Bulletin,String> bulletinMap = new LinkedHashMap<>();
         for (UserAndBulletin userAndBulletin : userAndBulletinList){
