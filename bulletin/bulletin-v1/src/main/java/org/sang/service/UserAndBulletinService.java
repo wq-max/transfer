@@ -43,4 +43,16 @@ public class UserAndBulletinService {
             return true;
         return false;
     }
+
+    //查看该用户是否有未读公告
+    public boolean hasMessageNoRead(Integer uid){
+        boolean flag = false;
+        for (UserAndBulletin userAndBulletin : userAndBulletinMapper.selectBulletinByUserId(uid)){
+            if (userAndBulletin.getState() == 0){
+                flag = true;
+                break;
+            }
+        }
+        return flag;
+    }
 }
