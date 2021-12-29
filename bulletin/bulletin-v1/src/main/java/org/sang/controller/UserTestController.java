@@ -32,6 +32,9 @@ public class UserTestController {
     @Autowired
     RedisService redisService;
 
+
+    private static Map<Integer,Integer> userFreshCunt = new LinkedHashMap<>();
+
     //private Integer userId;
 
     //private Boolean isLogin;
@@ -44,27 +47,30 @@ public class UserTestController {
     @GetMapping("/logout{id}")
     public String logOut(@PathVariable Integer id){
         userService.exit(id);
+        System.out.println("用户：" +id + "退出时，刷新次数：" +userFreshCunt.get(id));
+        userFreshCunt.put(id,0);
         return "index";
     }
 
     @PostMapping(value = "/user/loginIn")
-    public String login(String userid, String password, Map<String, Object> map){
+    public String login(String userid, String password){
         System.out.println(userid+"    "+password);
         Integer uid = Integer.parseInt(userid);
         //userId = uid;
         boolean flag = userService.login(uid,password);
         if(flag){
-            String username = userService.getNameById(uid);
-            map.put("username",username);
-            map.put("userId",uid);
+            userFreshCunt.put(uid,0);
             return "redirect:/user/bulletinList/"+uid;
         }else {
-            return "error";
+            return "loginError";
         }
     }
 
     @RequestMapping("/user/bulletinList/{id}")
     public String bulletinList(Model model,@PathVariable Integer id){
+        int count = userFreshCunt.get(id);
+        System.out.println("用户：" + id + "刷新次数：" + count);
+        userFreshCunt.put(id,count+1);
         System.out.println(id);
         List<UserAndBulletin> userAndBulletinList = userAndBulletinService.selectBulletinByUserId(id);
         Map<Bulletin,String> bulletinMap = new LinkedHashMap<>();
@@ -87,7 +93,16 @@ public class UserTestController {
         model.addAttribute("userId",id);
         System.out.println(name);
         //boolean hasOffMessage = redisService.hasUid(userId);
+        boolean hasNoReadMessage = userAndBulletinService.hasMessageNoRead(id);
+        System.out.println("用户：" + id + "是否有未读公告：" + hasNoReadMessage);
+        System.out.println("用户：" + id + "刷新次数：" + count);
+        if (count > 0)
+            hasNoReadMessage = false;
+        System.out.println("用户：" + id + "是否有未读公告：" + hasNoReadMessage);
+        model.addAttribute("hasNoReadMessage",hasNoReadMessage);
         boolean hasOffMessage = redisService.hasUid(id);
+        if (count > 0)
+            hasOffMessage = false;
         model.addAttribute("hasOffMessage",hasOffMessage);
         return "userBulletinList";
     }
@@ -115,6 +130,8 @@ public class UserTestController {
         //model.addAttribute("userId",userId);
         model.addAttribute("userId",id);
         System.out.println(name);
+        boolean hasNoReadMessage = false;
+        model.addAttribute("hasNoReadMessage",hasNoReadMessage);
         boolean hasOffMessage = false;
         model.addAttribute("hasOffMessage",hasOffMessage);
         return "userBulletinList";

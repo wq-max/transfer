@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title>用户公告列表</title>
+    <title>用户通告列表</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}"/>
     <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
@@ -53,9 +53,16 @@
 <script th:inline="javascript">
     var uid = [[${userId}]];
     var hasOffMessage = [[${hasOffMessage}]];
-    if(hasOffMessage){
-        alert("收到离线公告");
+    var hasNoReadMessage = [[${hasNoReadMessage}]];
+    if (hasOffMessage){
+        alert("收到离线公告!");
     }
+    else {
+        if(hasNoReadMessage){
+            alert("你有未读公告！");
+        }
+    }
+
     var webSocket = new WebSocket("ws://localhost:8088/websocket/" + uid);
 
     webSocket.onopen=function () {
@@ -81,7 +88,7 @@
         //window.location.reload(true);
         alert("收到公告消息");
         //window.location.href="/user/bulletinList/"+uid;
-        //window.location.reload(true);
+        window.location.reload(true);
     };
 
 
